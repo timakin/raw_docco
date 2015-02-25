@@ -1,0 +1,55 @@
+          code = buffer.toString();
+          生のコード
+
+          parseのlines
+          コードを行ごとに配列に入れたもの
+
+          sections = parse(source, code, config);
+          sections.docstextがコメント、
+          sections.codeTextがそれに添えられるコードとして、そのハッシュを返す。
+
+          format(source, sections, config);
+          sections.docstextをそれぞれpタグつけるた配列を返す
+          templateはテンプレに入ってるjstからとってきてる。
+
+          write(source, sections, config);
+
+
+
+
+
+// docsとcodeの入れ込み
+    for (_j = 0, _len1 = lines.length; _j < _len1; _j++) {
+        line = lines[_j];
+        if (line.match(lang.commentMatcher) && !line.match(lang.commentFilter)) {
+            if (hasCode) {
+                save();
+            }
+            docsText += (line = line.replace(lang.commentMatcher, '')) + '\n';
+            if (/^(---+|===+)$/.test(line)) {
+                save();
+            }
+        } else {
+            hasCode = true;
+            codeText += line + '\n';
+        }
+    }
+    save();
+    return sections;
+};
+
+
+
+
+//config
+          { layout: '/usr/local/lib/node_modules/docco/resources/parallel',
+  output: 'docs',
+  template:
+   { [Function]
+     source: 'function(obj){\nvar __t,__p=\'\',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,\'\');};\nwith(obj||{}){\n__p+=\'<!DOCTYPE html>\\n\\n<html>\\n<head>\\n  <title>\'+\n((__t=( title ))==null?\'\':__t)+\n\'</title>\\n  <meta http-equiv="content-type" content="text/html; charset=UTF-8">\\n  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">\\n  <link rel="stylesheet" media="all" href="\'+\n((__t=( css ))==null?\'\':__t)+\n\'" />\\n</head>\\n<body>\\n  <div id="container">\\n    <div id="background"></div>\\n    \';\n if (sources.length > 1) { \n__p+=\'\\n      <ul id="jump_to">\\n        <li>\\n          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>\\n          <a class="small" href="javascript:void(0);">+</a>\\n          <div id="jump_wrapper">\\n          <div id="jump_page_wrapper">\\n            <div id="jump_page">\\n              \';\n for (var i=0, l=sources.length; i<l; i++) { \n__p+=\'\\n                \';\n var source = sources[i]; \n__p+=\'\\n                <a class="source" href="\'+\n((__t=( path.basename(destination(source)) ))==null?\'\':__t)+\n\'">\\n                  \'+\n((__t=( path.basename(source) ))==null?\'\':__t)+\n\'\\n                </a>\\n              \';\n } \n__p+=\'\\n            </div>\\n          </div>\\n        </li>\\n      </ul>\\n    \';\n } \n__p+=\'\\n    <ul class="sections">\\n        \';\n if (!hasTitle) { \n__p+=\'\\n          <li id="title">\\n              <div class="annotation">\\n                  <h1>\'+\n((__t=( title ))==null?\'\':__t)+\n\'</h1>\\n              </div>\\n          </li>\\n        \';\n } \n__p+=\'\\n        \';\n for (var i=0, l=sections.length; i<l; i++) { \n__p+=\'\\n        \';\n var section = sections[i]; \n__p+=\'\\n        <li id="section-\'+\n((__t=( i + 1 ))==null?\'\':__t)+\n\'">\\n            <div class="annotation">\\n              \';\n heading = section.docsHtml.match(/^\\s*<(h\\d)>/) \n__p+=\'\\n              <div class="pilwrap \'+\n((__t=( heading ? \'for-\' + heading[1] : \'\' ))==null?\'\':__t)+\n\'">\\n                <a class="pilcrow" href="#section-\'+\n((__t=( i + 1 ))==null?\'\':__t)+\n\'">&#182;</a>\\n              </div>\\n              \'+\n((__t=( section.docsHtml ))==null?\'\':__t)+\n\'\\n            </div>\\n            \';\n if (section.codeText.replace(/\\s/gm, \'\') != \'\') { \n__p+=\'\\n            <div class="content">\'+\n((__t=( section.codeHtml ))==null?\'\':__t)+\n\'</div>\\n            \';\n } \n__p+=\'\\n        </li>\\n        \';\n } \n__p+=\'\\n    </ul>\\n  </div>\\n</body>\\n</html>\\n\';\n}\nreturn __p;\n}' },
+  css: '/usr/local/lib/node_modules/docco/resources/parallel/docco.css',
+  extension: null,
+  languages: {},
+  marked: null,
+  public: '/usr/local/lib/node_modules/docco/resources/parallel/public',
+  sources: [ 'sort.js' ] }
