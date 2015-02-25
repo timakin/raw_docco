@@ -15,7 +15,6 @@ var app = express();
 
 var testcode = fs.createReadStream('./app.js');
 var rl = readline.createInterface(testcode, {});
-var array = new Array();
 
 var Docco, buildMatchers, commander, configure, defaults, document, format, fs, getLanguage, highlightjs, languages, marked, parse, path, run, version, write, _,
     __slice = [].slice;
@@ -101,14 +100,15 @@ var getLanguage = function(config) {
     return lang;
 };
 
-/////////////////////////////
-
-rl.on('line', function(line) {
-  // 受け取ったlineを逆順にして
-  array.push(line.split('').join(''));
-    console.log("==========================");
-  console.log(parse(array));
-});
+var getCodeTextHash = function() {
+    var array = new Array();
+    rl.on('line', function(line) {
+        // 受け取ったlineを逆順にして
+        array.push((line.split('').join('')));
+        console.log(parse(array));
+    });
+};
+getCodeTextHash();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
