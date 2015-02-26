@@ -102,11 +102,19 @@ var getLanguage = function(config) {
 
 var getCodeTextHash = function() {
     var array = new Array();
-    rl.on('line', function(line) {
-        // 受け取ったlineを逆順にして
-        array.push((line.split('').join('')));
-        console.log(parse(array));
-    });
+    console.log("out of rl on");
+    var getResult = function(array) {
+        console.log("before rl on");
+        rl.on('line', function(line) {
+            array.push((line.split('').join('')));
+            if(array.length === 10) {
+                console.log("in rl on");
+                console.log(parse(array));
+            }
+        });
+        console.log("after rl on");
+    };
+    console.log(getResult(array));
 };
 getCodeTextHash();
 

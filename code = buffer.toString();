@@ -15,7 +15,39 @@
           write(source, sections, config);
 
 
+//  言語別のファイル形式などをまとめたJSONをパースする。
+var parsedLanguages = JSON.parse(fs.readFileSync('node_modules/docco/resources/languages.json'));
+var array = new Array();
 
+var Docco, buildMatchers, commander, configure, defaults, document, format, fs, getLanguage, highlightjs, languages, marked, parse, path, run, version, write, _,
+    __slice = [].slice;
+
+// language.jsonの内容に、その言語のコメントはどういう形式なのかを差し込む。
+var buildMatchers = function(languages) {
+    var ext, l;
+    for (ext in languages) {
+        l = languages[ext];
+        l.commentMatcher = RegExp("^\\s*" + l.symbol + "\\s?");
+        l.commentFilter = /(^#![/]|^\s*#\{)/;
+    }
+    return languages;
+};
+
+// そのコードがどの言語で書かれているかを判別する。
+// 拡張子を撮ってきて判断しているが、
+// オンラインでフォームからコードを投稿する際には、
+// 言語を選ばせてselectedLangとして保存する必要がある。
+var getLanguage = function(langs) {
+    var codeExt, codeLang, ext, lang, _ref;
+    var filename = './app.js';
+    var selectedLang = '.js';
+    ext = path.extname('test') || selectedLang;
+    lang = ((_ref = config.languages) != null ? _ref[ext] : void 0) || languages[ext];
+    return lang;
+};
+
+// 渡された行ごとのコードの配列を、コメントとコードに分けたhashで返す。
+var parse = function(lines, options) {
 
 
 // docsとcodeの入れ込み

@@ -27,9 +27,32 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4" vertical-offset="1305" max-vertical-offset="2490">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8857143" vertical-offset="1365" max-vertical-offset="2610">
+              <caret line="122" column="30" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readline.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/readline/readline.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="node-jquery.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/jQuery/lib/node-jquery.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="58361" max-vertical-offset="141645">
+              <caret line="3829" column="38" selection-start-line="3829" selection-start-column="38" selection-end-line="3829" selection-end-column="38" />
+              <folding>
+                <marker date="1341158852000" expanded="true" signature="35806:35837" placeholder="..." />
+                <marker date="1341158852000" expanded="true" signature="44499:44509" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,7 +103,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="18" />
+    <option name="x" value="565" />
     <option name="y" value="23" />
     <option name="width" value="771" />
     <option name="height" value="672" />
@@ -272,7 +295,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="23" width="771" height="672" extended-state="6" />
+    <frame x="565" y="23" width="771" height="672" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -386,10 +409,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/jQuery/tmp/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4963768" vertical-offset="55931" max-vertical-offset="140940">
+          <caret line="3761" column="72" selection-start-line="3761" selection-start-column="72" selection-end-line="3761" selection-end-column="72" />
+          <folding>
+            <marker date="1335861709000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1335861709000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express-jquery/vendor/jquery-1.8.3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.027173912" vertical-offset="0" max-vertical-offset="552">
+          <caret line="1" column="43137" selection-start-line="1" selection-start-column="43137" selection-end-line="1" selection-end-column="43137" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/jQuery/lib/node-jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="58361" max-vertical-offset="141645">
+          <caret line="3829" column="38" selection-start-line="3829" selection-start-column="38" selection-end-line="3829" selection-end-column="38" />
+          <folding>
+            <marker date="1341158852000" expanded="true" signature="35806:35837" placeholder="..." />
+            <marker date="1341158852000" expanded="true" signature="44499:44509" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/readline/readline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4" vertical-offset="1305" max-vertical-offset="2490">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8857143" vertical-offset="1365" max-vertical-offset="2610">
+          <caret line="122" column="30" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
           <folding />
         </state>
       </provider>
