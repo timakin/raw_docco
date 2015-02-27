@@ -10,14 +10,15 @@ var fs = require('fs');
 var lineReader = require('line-reader');
 var _ = require('underscore');
 var app = express();
+var filePath = './app.js';
 
-var getCodeTextHash = fs.readFile('./app.js', function(error, buffer) {
+var getCodeTextHash = fs.readFile(filePath, function(error, buffer) {
     var code, sections, parsedCode;
     if (error) {
         return callback(error);
     }
     code = buffer.toString();
-    parsedCode = parse(code.split('\n'));
+    parsedCode = parse(code.split('\n'), filePath);
     console.log(parsedCode);
     return parsedCode;
 });
@@ -25,10 +26,7 @@ var getCodeTextHash = fs.readFile('./app.js', function(error, buffer) {
 var Docco, buildMatchers, commander, configure, defaults, document, format, fs, getLanguage, highlightjs, languages, marked, parse, path, run, version, write, _,
     __slice = [].slice;
 
-var parse = function(lines, options) {
-    if (options == null) {
-        options = {};
-    }
+var parse = function(lines, filePath) {
     var languages = JSON.parse(fs.readFileSync('node_modules/docco/resources/languages.json'));
 
     var buildMatchers = function(languages) {
@@ -43,16 +41,17 @@ var parse = function(lines, options) {
 
     var langs = buildMatchers(languages);
 
-    var getLanguage = function(config) {
+    var getLanguage = function(config, filePath) {
         var codeExt, codeLang, ext, lang, _ref;
-        var filename = './app.js';
+        console.log(path.basename(filePath));
+        var filename = path.basename(filePath);
         var selectedLang = '.js';
         ext = path.extname('test') || selectedLang;
         lang = ((_ref = config.languages) != null ? _ref[ext] : void 0) || languages[ext];
         return lang;
     };
 
-    var lang = getLanguage(langs);
+    var lang = getLanguage(langs, filePath);
     var codeText, docsText, hasCode, i, isText, lang, line, lines, match, maybeCode, save, sections, _i, _j, _len, _len1;
     sections = [];
     hasCode = docsText = codeText = '';
