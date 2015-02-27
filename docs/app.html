@@ -41,9 +41,42 @@
 <span class="hljs-keyword">var</span> routes = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./routes/index'</span>);
 <span class="hljs-keyword">var</span> users = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./routes/users'</span>);
 <span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">var</span> lineReader = <span class="hljs-built_in">require</span>(<span class="hljs-string">'line-reader'</span>);
 <span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'underscore'</span>);
 
 <span class="hljs-keyword">var</span> app = express();
+<span class="hljs-keyword">var</span> yoyo = fs.readFile(<span class="hljs-string">'./app.js'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, buffer)</span> </span>{
+    <span class="hljs-keyword">var</span> code, sections, parsedCode;
+    <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-keyword">return</span> callback(error);
+    }
+    code = buffer.toString();
+    parsedCode = parse(code.split(<span class="hljs-string">'\n'</span>));
+    <span class="hljs-built_in">console</span>.log(parsedCode);
+    <span class="hljs-keyword">return</span> parsedCode;
+    });
+<span class="hljs-built_in">console</span>.log(yoyo);
+<span class="hljs-keyword">var</span> testread = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> codeArray = [];
+    lineReader.eachLine(<span class="hljs-string">'./app.js'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
+        codeArray.push(line);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>   console.log(line);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    });
+    <span class="hljs-keyword">return</span> codeArray;
+};
 
 <span class="hljs-keyword">var</span> testcode = fs.createReadStream(<span class="hljs-string">'./app.js'</span>);
 <span class="hljs-keyword">var</span> rl = readline.createInterface(testcode, {});
@@ -111,11 +144,11 @@
         </li>
         
         
-        <li id="section-2">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>///////////////////////////
 /language getter</p>
@@ -142,23 +175,18 @@
     ext = config.extension;
     lang = ((_ref = config.languages) != <span class="hljs-literal">null</span> ? _ref[ext] : <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>) || languages[ext];
     <span class="hljs-keyword">return</span> lang;
-};</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>///////////////////////////</p>
+};
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> array = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
-rl.on(<span class="hljs-string">'line'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{</pre></div></div>
+<span class="hljs-keyword">var</span> getCodeTextHash = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> array = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+    <span class="hljs-keyword">var</span> getResult = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(array)</span> </span>{
+        rl.on(<span class="hljs-string">'line'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
+            array.push((line.split(<span class="hljs-string">''</span>).join(<span class="hljs-string">''</span>)));
+        });
+    };
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"yo"</span>);
+};
+getCodeTextHash();</pre></div></div>
             
         </li>
         
@@ -168,24 +196,6 @@ rl.on(<span class="hljs-string">'line'</span>, <span class="hljs-function"><span
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>受け取ったlineを逆順にして</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  array.push(line.split(<span class="hljs-string">''</span>).join(<span class="hljs-string">''</span>));
-});
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"=========================="</span>);
-<span class="hljs-built_in">console</span>.log(parse(array));</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>view engine setup</p>
 
@@ -197,11 +207,11 @@ app.set(<span class="hljs-string">'view engine'</span>, <span class="hljs-string
         </li>
         
         
-        <li id="section-6">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>uncomment after placing your favicon in /public
 app.use(favicon(__dirname + ‘/public/favicon.ico’));</p>
@@ -220,11 +230,11 @@ app.use(<span class="hljs-string">'/users'</span>, users);</pre></div></div>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>catch 404 and forward to error handler</p>
 
@@ -239,11 +249,11 @@ app.use(<span class="hljs-string">'/users'</span>, users);</pre></div></div>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>error handlers</p>
 
@@ -252,11 +262,11 @@ app.use(<span class="hljs-string">'/users'</span>, users);</pre></div></div>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>development error handler
 will print stacktrace</p>
@@ -276,11 +286,11 @@ will print stacktrace</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>production error handler
 no stacktraces leaked to user</p>

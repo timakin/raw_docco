@@ -9,9 +9,29 @@ var readline = require('readline');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var fs = require('fs');
+var lineReader = require('line-reader');
 var _ = require('underscore');
 
 var app = express();
+var yoyo = fs.readFile('./app.js', function(error, buffer) {
+    var code, sections, parsedCode;
+    if (error) {
+        return callback(error);
+    }
+    code = buffer.toString();
+    parsedCode = parse(code.split('\n'));
+    console.log(parsedCode);
+    return parsedCode;
+    });
+console.log(yoyo);
+var testread = function() {
+    var codeArray = [];
+    lineReader.eachLine('./app.js', function(line) {
+        codeArray.push(line);
+    //    console.log(line);
+    });
+    return codeArray;
+};
 
 var testcode = fs.createReadStream('./app.js');
 var rl = readline.createInterface(testcode, {});
@@ -102,19 +122,12 @@ var getLanguage = function(config) {
 
 var getCodeTextHash = function() {
     var array = new Array();
-    console.log("out of rl on");
     var getResult = function(array) {
-        console.log("before rl on");
         rl.on('line', function(line) {
             array.push((line.split('').join('')));
-            if(array.length === 10) {
-                console.log("in rl on");
-                console.log(parse(array));
-            }
         });
-        console.log("after rl on");
     };
-    console.log(getResult(array));
+    console.log("yo");
 };
 getCodeTextHash();
 
