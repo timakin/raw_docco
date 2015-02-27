@@ -4,16 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var docco = require('docco');
-var readline = require('readline');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var fs = require('fs');
 var lineReader = require('line-reader');
 var _ = require('underscore');
-
 var app = express();
-var yoyo = fs.readFile('./app.js', function(error, buffer) {
+
+var getCodeTextHash = fs.readFile('./app.js', function(error, buffer) {
     var code, sections, parsedCode;
     if (error) {
         return callback(error);
@@ -22,19 +20,7 @@ var yoyo = fs.readFile('./app.js', function(error, buffer) {
     parsedCode = parse(code.split('\n'));
     console.log(parsedCode);
     return parsedCode;
-    });
-console.log(yoyo);
-var testread = function() {
-    var codeArray = [];
-    lineReader.eachLine('./app.js', function(line) {
-        codeArray.push(line);
-    //    console.log(line);
-    });
-    return codeArray;
-};
-
-var testcode = fs.createReadStream('./app.js');
-var rl = readline.createInterface(testcode, {});
+});
 
 var Docco, buildMatchers, commander, configure, defaults, document, format, fs, getLanguage, highlightjs, languages, marked, parse, path, run, version, write, _,
     __slice = [].slice;
@@ -96,40 +82,6 @@ var parse = function(lines, options) {
     return sections;
 };
 
-/////////////////////////////
-///language getter
-
-var languages = JSON.parse(fs.readFileSync('node_modules/docco/resources/languages.json'));
-
-var buildMatchers = function(languages) {
-    var ext, l;
-    for (ext in languages) {
-        l = languages[ext];
-        l.commentMatcher = RegExp("^\\s*" + l.symbol + "\\s?");
-        l.commentFilter = /(^#![/]|^\s*#\{)/;
-    }
-    return languages;
-};
-
-var langs = buildMatchers(languages);
-
-var getLanguage = function(config) {
-    var codeExt, codeLang, ext, lang, _ref;
-    ext = config.extension;
-    lang = ((_ref = config.languages) != null ? _ref[ext] : void 0) || languages[ext];
-    return lang;
-};
-
-var getCodeTextHash = function() {
-    var array = new Array();
-    var getResult = function(array) {
-        rl.on('line', function(line) {
-            array.push((line.split('').join('')));
-        });
-    };
-    console.log("yo");
-};
-getCodeTextHash();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
