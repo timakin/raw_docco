@@ -6,10 +6,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var app = express();
+
+
+
+
+//////////////////for docco
+
 var fs = require('fs');
 var lineReader = require('line-reader');
 var _ = require('underscore');
-var app = express();
+
+
 var filePath = './app.js';
 
 var getCodeTextHash = fs.readFile(filePath, function(error, buffer) {
@@ -80,6 +88,8 @@ var parse = function(lines, filePath) {
     save();
     return sections;
 };
+
+/////////////////////////////
 
 
 // view engine setup
