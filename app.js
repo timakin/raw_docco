@@ -31,9 +31,6 @@ var getCodeTextHash = fs.readFile(filePath, function(error, buffer) {
     return parsedCode;
 });
 
-var Docco, buildMatchers, commander, configure, defaults, document, format, fs, getLanguage, highlightjs, languages, marked, parse, path, run, version, write, _,
-    __slice = [].slice;
-
 var parse = function(lines, filePath) {
     var languages = JSON.parse(fs.readFileSync('node_modules/docco/resources/languages.json'));
 
