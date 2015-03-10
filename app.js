@@ -15,7 +15,6 @@ var app = express();
 
 var fs = require('fs');
 var lineReader = require('line-reader');
-var _ = require('underscore');
 
 
 var filePath = './app.js';
@@ -28,7 +27,7 @@ var getCodeTextHash = fs.readFile(filePath, function(error, buffer) {
     code = buffer.toString();
     parsedCode = parse(code.split('\n'), filePath);
     console.log(parsedCode);
-    return parsedCode;
+    return parsedCode; //ここで吐き出す
 });
 
 var parse = function(lines, filePath) {
